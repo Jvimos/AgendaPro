@@ -1,3 +1,4 @@
+
 <?php
 
 session_start();
@@ -12,8 +13,10 @@ require_once "../includes/mensajes.php";
 
 $id = $_GET["id"] ?? "";
 
-if (!filter_var($id, FILTER_VALIDATE_INT)) {
-    die("Contacto no válido.");
+if (!filter_var($id, FILTER_VALIDATE_INT) || (int)$id < 1) {
+    guardarMensaje("error", "El contacto seleccionado no es válido.");
+    header("Location: listar.php");
+    exit;
 }
 
 $sql = "SELECT id, nombre, telefono, correo, ciudad
@@ -23,14 +26,20 @@ $sql = "SELECT id, nombre, telefono, correo, ciudad
 $stmt = $conexion->prepare($sql);
 
 $stmt->execute([
-    $id,
+    (int)$id,
     $_SESSION["usuario_id"]
 ]);
 
 $contacto = $stmt->fetch();
 
 if (!$contacto) {
-    die("No tienes permiso para acceder a este contacto.");
+    guardarMensaje(
+        "error",
+        "El contacto no existe o no tienes permiso para acceder."
+    );
+
+    header("Location: listar.php");
+    exit;
 }
 
 ?>
@@ -39,20 +48,17 @@ if (!$contacto) {
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Editar contacto | AgendaPro</title>
 
     <link rel="stylesheet" href="../css/estilos.css">
-
 </head>
 
 <body>
 
     <header class="navbar">
-
         <div class="contenedor navbar-contenido">
 
             <a href="listar.php" class="navbar-logo">
@@ -60,33 +66,29 @@ if (!$contacto) {
             </a>
 
             <div class="navbar-usuario">
-
                 <span>
-                    <?= htmlspecialchars($_SESSION["usuario_nombre"]) ?>
+                    <?= htmlspecialchars(
+                        $_SESSION["usuario_nombre"],
+                        ENT_QUOTES,
+                        "UTF-8"
+                    ) ?>
                 </span>
 
-                <a href="../auth/logout.php">
-                    Cerrar sesión
-                </a>
-
+                <a href="../auth/logout.php">Cerrar sesión</a>
             </div>
 
         </div>
-
     </header>
 
     <main class="contenedor dashboard">
 
+        <?php mostrarMensaje(); ?>
+
         <section class="formulario-card">
 
             <div class="formulario-cabecera">
-
                 <h1>Editar contacto</h1>
-
-                <p>
-                    Actualiza la información de este contacto.
-                </p>
-
+                <p>Actualiza la información de este contacto.</p>
             </div>
 
             <form action="actualizar.php" method="POST">
@@ -94,84 +96,84 @@ if (!$contacto) {
                 <input
                     type="hidden"
                     name="id"
-                    value="<?= $contacto["id"] ?>"
+                    value="<?= (int)$contacto["id"] ?>"
                 >
 
                 <div class="form-grupo">
-
-                    <label for="nombre">
-                        Nombre completo
-                    </label>
+                    <label for="nombre">Nombre completo</label>
 
                     <input
                         type="text"
                         id="nombre"
                         name="nombre"
-                        value="<?= htmlspecialchars($contacto["nombre"]) ?>"
+                        maxlength="150"
+                        value="<?= htmlspecialchars(
+                            $contacto["nombre"],
+                            ENT_QUOTES,
+                            "UTF-8"
+                        ) ?>"
                         required
                     >
-
                 </div>
 
                 <div class="form-grupo">
-
-                    <label for="telefono">
-                        Teléfono
-                    </label>
+                    <label for="telefono">Teléfono</label>
 
                     <input
                         type="text"
                         id="telefono"
                         name="telefono"
-                        value="<?= htmlspecialchars($contacto["telefono"]) ?>"
+                        maxlength="30"
+                        value="<?= htmlspecialchars(
+                            $contacto["telefono"],
+                            ENT_QUOTES,
+                            "UTF-8"
+                        ) ?>"
                         required
                     >
-
                 </div>
 
                 <div class="form-grupo">
-
-                    <label for="correo">
-                        Correo electrónico
-                    </label>
+                    <label for="correo">Correo electrónico</label>
 
                     <input
                         type="email"
                         id="correo"
                         name="correo"
-                        value="<?= htmlspecialchars($contacto["correo"]) ?>"
+                        maxlength="150"
+                        value="<?= htmlspecialchars(
+                            $contacto["correo"],
+                            ENT_QUOTES,
+                            "UTF-8"
+                        ) ?>"
                         required
                     >
-
                 </div>
 
                 <div class="form-grupo">
-
-                    <label for="ciudad">
-                        Ciudad
-                    </label>
+                    <label for="ciudad">Ciudad</label>
 
                     <input
                         type="text"
                         id="ciudad"
                         name="ciudad"
-                        value="<?= htmlspecialchars($contacto["ciudad"]) ?>"
+                        maxlength="100"
+                        value="<?= htmlspecialchars(
+                            $contacto["ciudad"],
+                            ENT_QUOTES,
+                            "UTF-8"
+                        ) ?>"
                         required
                     >
-
                 </div>
 
                 <div class="formulario-acciones">
 
-                    <a
-                        href="listar.php"
-                        class="btn btn-secundario">
+                    <a href="listar.php" class="btn btn-secundario">
                         Cancelar
                     </a>
 
-                    <button
-                        type="submit"
-                        class="btn btn-principal">
+                    <button type="submit" class="btn btn-principal">
                         Guardar cambios
                     </button>
 
@@ -184,5 +186,4 @@ if (!$contacto) {
     </main>
 
 </body>
-
 </html>
