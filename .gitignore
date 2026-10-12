@@ -1,0 +1,13 @@
+
+# Configuración del editor
+.vscode/
+.idea/
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+*.log
+
+# Archivos temporales y copias de seguridad
+*.tmp
+*.bak
