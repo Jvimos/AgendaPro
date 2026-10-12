@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (isset($_SESSION["usuario_id"])) {
+    header("Location: contactos/listar.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 

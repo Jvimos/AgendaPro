@@ -181,7 +181,12 @@ $total_contactos = count($contactos);
 
                                     <td>
                                         <strong>
-                                            <?= htmlspecialchars($contacto["nombre"]) ?>
+                                            <?= htmlspecialchars(
+                                                $contacto["nombre"]
+                                                ENT_QUOTES, 
+                                                "UTF-8"
+                                            
+                                            )?>
                                         </strong>
                                     </td>
 
@@ -200,7 +205,7 @@ $total_contactos = count($contactos);
                                     <td class="acciones">
 
                                         <a
-                                            href="editar.php?id=<?= $contacto["id"] ?>"
+                                            href="editar.php?id=<?= (int)$contacto["id"] ?>"
                                             class="accion-editar">
                                             Editar
                                         </a>
@@ -210,7 +215,7 @@ $total_contactos = count($contactos);
                                             style="display:inline;">
 
                                             <input type="hidden" name="id" 
-                                                   value="<?= $contacto["id"] ?>">
+                                                   value="<?= (int)$contacto["id"] ?>"
                                             
                                             <button type="submit" class="accion-eliminar">
                                                 Eliminar 

@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "../includes/mensajes.php";
+mostrarMensaje();
 ?>
 
 <!DOCTYPE html>
@@ -35,13 +36,7 @@ require_once "../includes/mensajes.php";
                     Regístrate para comenzar a administrar tus contactos.
                 </p>
 
-            </div>
-
-            <?php
-            session_start(); 
-            require_once "../includes/mensajes.php";
-            mostrarMensaje();
-            ?>
+            </div> 
 
             <form action="registrar.php" method="POST">
 
@@ -56,6 +51,7 @@ require_once "../includes/mensajes.php";
                         id="nombre"
                         name="nombre"
                         placeholder="Ingresa tu nombre"
+                        maxlength="100"
                         required
                     >
 
@@ -72,6 +68,7 @@ require_once "../includes/mensajes.php";
                         id="correo"
                         name="correo"
                         placeholder="ejemplo@correo.com"
+                        maxlength="150"
                         required
                     >
 
@@ -88,6 +85,8 @@ require_once "../includes/mensajes.php";
                         id="password"
                         name="password"
                         placeholder="Crea una contraseña"
+                        minlength="6"
+                        maxlength="72"
                         required
                     >
 
@@ -104,6 +103,8 @@ require_once "../includes/mensajes.php";
                         id="password_confirmar"
                         name="password_confirmar"
                         placeholder="Repite tu contraseña"
+                        minlength="6"
+                        maxlength="72"
                         required
                     >
 

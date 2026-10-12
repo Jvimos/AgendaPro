@@ -67,8 +67,19 @@ La aplicación utiliza sesiones, consultas preparadas, validación de datos y ve
 
 ## Autor
 
-Vimos Lema Juan Carlos 
+Vimos 
 
 ## Proyecto académico
 
 Desarrollo de una Agenda Personal de Contactos con Autenticación en PHP.
+
+## Repositorio
+
+Código fuente del proyecto: https://github.com/Jvimos/AgendaPro
+
+## Pruebas recomendadas
+
+1. Registrar una cuenta nueva e iniciar sesión.
+2. Crear, editar y eliminar un contacto.
+3. Cerrar sesión y comprobar que las páginas privadas no sean accesibles.
+4. Crear dos cuentas diferentes y verificar que cada una solo pueda consultar y administrar sus propios contactos.

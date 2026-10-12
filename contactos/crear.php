@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 session_start();
 
@@ -65,8 +65,9 @@ require_once "../includes/mensajes.php";
 
             </div>
 
+            <?php mostrarMensaje(); ?> 
+            
             <form action="guardar.php" method="POST">
-                <?php mostrarMensaje(); ?>
 
                 <div class="form-grupo">
 
@@ -79,6 +80,7 @@ require_once "../includes/mensajes.php";
                         id="nombre"
                         name="nombre"
                         placeholder="Ej. Juan Pérez"
+                        maxlength="150"
                         required
                     >
 
@@ -95,6 +97,7 @@ require_once "../includes/mensajes.php";
                         id="telefono"
                         name="telefono"
                         placeholder="Ej. 0991234567"
+                        maxlength="30"
                         required
                     >
 
@@ -111,6 +114,7 @@ require_once "../includes/mensajes.php";
                         id="correo"
                         name="correo"
                         placeholder="Ej. juan@correo.com"
+                        maxlength="150"
                         required
                     >
 

@@ -1,4 +1,3 @@
-
 <?php
 
 session_start();
@@ -186,4 +185,6 @@ if (!$contacto) {
     </main>
 
 </body>
+
 </html>
+
