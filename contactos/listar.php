@@ -182,7 +182,7 @@ $total_contactos = count($contactos);
                                     <td>
                                         <strong>
                                             <?= htmlspecialchars(
-                                                $contacto["nombre"]
+                                                $contacto["nombre"],
                                                 ENT_QUOTES, 
                                                 "UTF-8"
                                             
@@ -214,8 +214,7 @@ $total_contactos = count($contactos);
                                             onsubmit="return confirm('¿Estás seguro de eliminar este contacto?');"
                                             style="display:inline;">
 
-                                            <input type="hidden" name="id" 
-                                                   value="<?= (int)$contacto["id"] ?>"
+                                            <input type="hidden" name="id" value="<?= (int)$contacto["id"] ?>">
                                             
                                             <button type="submit" class="accion-eliminar">
                                                 Eliminar 
