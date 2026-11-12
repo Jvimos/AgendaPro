@@ -1,12 +1,12 @@
 <?php
 
-// Plantilla de configuraciÃ³n de conexiÃ³n a la base de datos para despliegue / evaluaciÃ³n.
-// Para utilizar: renombrar o copiar este archivo como 'conexion.php' y configurar las credenciales locales.
+// Configuracion de conexion a la base de datos para despliegue / evaluacion.
+// Para utilizar: renombrar o copiar este archivo como 'conexion.php' y configurar las credenciales locales de su respectivo equipos.
 
 $host = "localhost";
 $db = "agenda_contactos";
 $usuario = "root";
-$password = ""; // En instalaciones estÃ¡ndar de XAMPP la contraseÃ±a de root suele estar vacÃ­a.
+$password = ""; 
 $charset = "utf8mb4";
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
