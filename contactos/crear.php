@@ -21,7 +21,7 @@ require_once "../includes/mensajes.php";
 
     <title>Nuevo contacto | AgendaPro</title>
 
-    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/estilo.css">
 
 </head>
 

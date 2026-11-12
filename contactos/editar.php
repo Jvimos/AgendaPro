@@ -52,7 +52,7 @@ if (!$contacto) {
 
     <title>Editar contacto | AgendaPro</title>
 
-    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/estilo.css">
 </head>
 
 <body>

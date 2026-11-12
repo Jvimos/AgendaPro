@@ -34,7 +34,7 @@ $total_contactos = count($contactos);
 
     <title>Mis contactos | AgendaPro</title>
 
-    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/estilo.css">
 
 </head>
 

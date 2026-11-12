@@ -11,3 +11,11 @@ Thumbs.db
 # Archivos temporales y copias de seguridad
 *.tmp
 *.bak
+
+# Configuración local y credenciales
+/config/conexion.php
+
+# Variables de entorno
+.env
+.env.*
+!.env.example

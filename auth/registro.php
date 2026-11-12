@@ -1,7 +1,12 @@
 <?php
 session_start();
+
+if (isset($_SESSION["usuario_id"])) {
+    header("Location: ../contactos/listar.php");
+    exit;
+}
+
 require_once "../includes/mensajes.php";
-mostrarMensaje();
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +18,7 @@ mostrarMensaje();
 
     <title>Crear cuenta | AgendaPro</title>
 
-    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/estilo.css">
 </head>
 
 <body>
@@ -37,6 +42,8 @@ mostrarMensaje();
                 </p>
 
             </div> 
+
+            <?php mostrarMensaje(); ?>
 
             <form action="registrar.php" method="POST">
 

@@ -25,7 +25,7 @@ if (isset($_SESSION["usuario_id"])) {
 
     <title>Iniciar sesión | AgendaPro</title>
 
-    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/estilo.css">
 </head>
 
 <body>
