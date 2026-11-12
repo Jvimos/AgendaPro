@@ -6,19 +6,19 @@ Aplicación web desarrollada en PHP y MySQL para la gestión académica y profes
 
 ## Ficha Académica
 
-* **Institución:** [Completar: Nombre de la Institución / Universidad]
-* **Carrera / Programa:** [Completar: Carrera o Programa Académico]
-* **Asignatura / Módulo:** [Completar: Nombre de la Asignatura / Módulo]
-* **Autor / Estudiante:** Vimos [Completar: Nombres y Apellidos completos]
-* **Docente / Tutora:** [Completar: Nombre de la Docente / Tutora]
-* **Fecha de Entrega:** [Completar: Fecha de entrega]
+* **Institución:** UNIVERSIDAD PARTICULAR DE LOJA
+* **Carrera / Programa:** Tecnologia de la información 
+* **Asignatura / Módulo:** Desarrollo web
+* **Estudiante:** Vimos Lema Juan Carlos
+* **Docente / Tutora:** TORRES GUARNIZO DIANA ALEXANDRA
+* **Fecha de Entrega:** 12/11/2026
 * **Repositorio en GitHub:** https://github.com/Jvimos/AgendaPro
 
 ---
 
 ## Video de Presentación y Sustentación
 
-* **Enlace del Video:** `[Completar: Pegar aquí el enlace al video de presentación (YouTube / Google Drive / OneDrive)]`
+* **Enlace del Video:** ``
 
 ---
 
