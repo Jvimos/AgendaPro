@@ -233,9 +233,8 @@ AgendaContactos/
 ### 1. Panel Principal con Búsqueda, Filtros y Badges de Categoría
 *Vista de la lista de contactos mostrando la barra de búsqueda por nombre, correo y ciudad, selector de ordenamiento, badges de colores por categoría y contador estadístico.*
 
-```text
-[ INSERTAR AQUÍ CAPTURA DEL PANEL PRINCIPAL CON FILTROS ACTIVOS ]
-```
+<img width="1376" height="856" alt="image" src="https://github.com/user-attachments/assets/2beb662d-913c-49ca-87f7-24688b4ca965" />
+
 
 ### 2. Filtro de Contactos Favoritos (Opción D)
 *Vista filtrada con la pestaña "Solo Favoritos", mostrando las estrellas activas y el aislamiento de datos.*
