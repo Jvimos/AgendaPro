@@ -27,10 +27,6 @@ Aplicación web desarrollada en PHP y MySQL para la gestión académica y profes
 > 💾 **Script SQL Actualizado:**  
 > Ubicado en la raíz del proyecto: [`agenda_contactos.sql`](./agenda_contactos.sql)
 
-> 📹 **Video de Presentación y Sustentación:**  
-> `https://drive.google.com/file/d/1PMJumT2uN_CYyzp9UEWyL71ucNxHI3_P/view?usp=sharing`
-
----
 
 ## Fundamentación Teórica (Resultado de Aprendizaje)
 
