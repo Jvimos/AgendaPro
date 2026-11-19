@@ -50,7 +50,7 @@ AgendaPro implementa un modelo **orientado a eventos web**. Cada interacción de
 
 ## Mejoras Implementadas
 
-En esta entrega se incorporaron **las cuatro mejoras propuestas** para alcanzar la máxima calificación (Excelente - 2.5 pts):
+En esta entrega se incorporaron **las cuatro mejoras propuestas**:
 
 ### 1. Opción A: Búsqueda Avanzada de Contactos
 * Permite buscar contactos en tiempo real por:
