@@ -105,7 +105,7 @@ En esta entrega se incorporaron **las cuatro mejoras propuestas** para alcanzar 
 
 ## Guía de Despliegue en un Hosting Gratuito (Paso a Paso)
 
-Para cumplir con la **Parte 2** de la actividad, se puede utilizar **InfinityFree** (recomendado), **AwardSpace** o **ByetHost**. A continuación, se detallan los pasos para InfinityFree:
+Para cumplir con la **Parte 2** de la actividad, utilice **InfinityFree**. A continuación, se detallan los pasos para InfinityFree:
 
 ### Paso 1: Crear la cuenta en el Hosting
 1. Ingresar a [InfinityFree](https://www.infinityfree.com/) y registrarse con un correo electrónico.
