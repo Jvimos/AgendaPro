@@ -240,9 +240,8 @@ AgendaContactos/
 ### 2. Filtro de Contactos Favoritos (Opción D)
 *Vista filtrada con la pestaña "Solo Favoritos", mostrando las estrellas activas y el aislamiento de datos.*
 
-```text
-[ INSERTAR AQUÍ CAPTURA DE LA VISTA DE FAVORITOS ]
-```
+<img width="1550" height="873" alt="image" src="https://github.com/user-attachments/assets/91113e6b-5822-4f86-9e06-fad748192164" />
+
 
 ### 3. Formulario de Creación con Categorías y Favoritos (Opciones C y D)
 *Formulario con el menú desplegable de categorías (Familia, Amigos, Trabajo, Universidad, Otro) y el checkbox de favorito.*
