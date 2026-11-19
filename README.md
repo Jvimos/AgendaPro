@@ -1,203 +1,278 @@
-# AgendaPro — Agenda Personal de Contactos
+# AgendaPro — Agenda Personal de Contactos (Versión Mejorada y Despliegue)
 
-Aplicación web desarrollada en PHP y MySQL para la gestión académica y profesional de una agenda personal de contactos, integrando autenticación de usuarios, control de sesiones y aislamiento estricto de información.
+Aplicación web desarrollada en PHP y MySQL para la gestión académica y profesional de una agenda personal de contactos, integrando autenticación de usuarios, control de sesiones, aislamiento estricto de información, y ahora con **mejoras avanzadas de búsqueda, ordenamiento, categorías relacionales, contactos favoritos y despliegue en hosting gratuito**.
 
 ---
 
 ## Ficha Académica
 
-* **Institución:** UNIVERSIDAD PARTICULAR DE LOJA
-* **Carrera / Programa:** Tecnologia de la información 
-* **Asignatura / Módulo:** Desarrollo web
+* **Institución:** UNIVERSIDAD TÉCNICA PARTICULAR DE LOJA (UTPL)
+* **Carrera / Programa:** Tecnologías de la Información
+* **Asignatura / Módulo:** Desarrollo Web / Programación Web
+* **Actividad:** [APEB1-30%] Actividad: Despliegue y Mejoras de una Aplicación Web en un Hosting Gratuito
 * **Estudiante:** Vimos Lema Juan Carlos
 * **Docente / Tutora:** TORRES GUARNIZO DIANA ALEXANDRA
-* **Fecha de Entrega:** 12/11/2026
 * **Repositorio en GitHub:** https://github.com/Jvimos/AgendaPro
 
 ---
 
-## Video de Presentación y Sustentación
+## Enlaces de Acceso y Entrega
 
-* **Enlace del Video:** `https://drive.google.com/file/d/1PMJumT2uN_CYyzp9UEWyL71ucNxHI3_P/view?usp=sharing`
+> 🌐 **URL Pública del Sistema en Línea (Hosting Gratuito):**  
+> `http://agendapro-juanvimos.infinityfreeapp.com`  
+> *(Reemplaza con tu URL asignada por InfinityFree o AwardSpace)*
+
+> 🐙 **Repositorio en GitHub:**  
+> `https://github.com/Jvimos/AgendaPro`
+
+> 💾 **Script SQL Actualizado:**  
+> Ubicado en la raíz del proyecto: [`agenda_contactos.sql`](./agenda_contactos.sql)
+
+> 📹 **Video de Presentación y Sustentación:**  
+> `https://drive.google.com/file/d/1PMJumT2uN_CYyzp9UEWyL71ucNxHI3_P/view?usp=sharing`
 
 ---
 
-## Descripción y Objetivo del Proyecto
+## Fundamentación Teórica (Resultado de Aprendizaje)
 
-AgendaPro es un sistema web concebido para que cada usuario registrado disponga de un entorno privado donde registrar, consultar, actualizar y eliminar contactos de forma organizada y segura.
+### Diferencia entre Programación Orientada a Eventos y Programación de Línea de Comandos
 
-El objetivo principal es aplicar buenas prácticas de desarrollo web backend en PHP con arquitectura cliente-servidor y base de datos relacional MySQL, cumpliendo con los estándares de seguridad requeridos: cifrado unidireccional de contraseñas, gestión segura de sesiones, sentencias preparadas contra inyección SQL y control estricto de autorización para evitar el acceso no autorizado a datos ajenos.
+| Criterio | Programación de Línea de Comandos (CLI) | Programación Orientada a Eventos (Web / GUI) |
+| :--- | :--- | :--- |
+| **Flujo de Ejecución** | **Secuencial y síncrono:** El programa sigue un orden predeterminado de principio a fin, ejecutando instrucción por instrucción. | **Asíncrono y reactivo:** El flujo no es predecible; la aplicación permanece a la espera de acciones o sucesos (eventos) generados por el usuario o el sistema. |
+| **Interacción con el Usuario** | El usuario responde a indicaciones estrictas (`prompts`), ingresando datos por texto en la consola cuando el flujo del programa se detiene para pedirlo. | El usuario interactúa libremente con múltiples controles gráficos (botones, campos de búsqueda, selectores, estrellas de favoritos, formularios). |
+| **Punto de Control** | El programa tiene el control absoluto de qué paso sigue y cuándo se solicitan los datos. | El usuario tiene el control: decide cuándo buscar, cuándo ordenar, cuándo marcar un favorito o cuándo editar un contacto. |
+| **Manejo de Respuestas** | Funciones bloqueantes de entrada/salida (`fgets()`, `input()`, `cin`). | Disparadores (`Event Handlers`) y solicitudes HTTP (`GET`, `POST`) que procesan eventos como `onsubmit`, `onclick`, `onchange`, despachando respuestas dinámicas en el servidor. |
+
+**Aplicación en este proyecto:**  
+AgendaPro implementa un modelo **orientado a eventos web**. Cada interacción del usuario —pulsar la estrella para alternar favoritos, enviar un término de búsqueda, cambiar el criterio de ordenamiento, seleccionar una categoría o enviar un formulario— genera un evento HTTP (peticiones `GET` o `POST`). El backend en PHP actúa como despachador de eventos, procesando la solicitud mediante controladores específicos (`listar.php`, `guardar.php`, `actualizar.php`, `toggle_favorito.php`, `eliminar.php`), interactuando con la base de datos y devolviendo una vista actualizada en tiempo real con mensajes de retroalimentación inmediata.
+
+---
+
+## Mejoras Implementadas (Cumplimiento Total de la Rúbrica - 4 Mejoras)
+
+En esta entrega se incorporaron **las cuatro mejoras propuestas** para alcanzar la máxima calificación (Excelente - 2.5 pts):
+
+### 1. Opción A: Búsqueda Avanzada de Contactos
+* Permite buscar contactos en tiempo real por:
+  * **Nombre**
+  * **Correo electrónico**
+  * **Ciudad**
+* Incorpora un selector de criterio que permite realizar:
+  * **Búsqueda integral (Todos los campos):** Busca coincidencias simultáneamente en nombre, correo o ciudad.
+  * **Búsqueda específica:** Filtra únicamente por el campo seleccionado (solo nombre, solo correo o solo ciudad).
+* Mantiene los valores de búsqueda en el formulario para comodidad del usuario y ofrece un botón rápido de **"✕ Limpiar"** para restablecer la vista.
+
+### 2. Opción B: Ordenamiento Dinámico Multicriterio
+* Se incorporó el campo `fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP` en la tabla `contactos`.
+* Permite ordenar la lista de contactos bajo los siguientes criterios:
+  * **Fecha de creación (Más recientes primero)** — *Criterio predeterminado*
+  * **Fecha de creación (Más antiguos primero)**
+  * **Nombre (A → Z)**
+  * **Nombre (Z → A)**
+  * **Ciudad (A → Z)**
+  * **Ciudad (Z → A)**
+* Implementado con validación estricta por lista blanca (`whitelist`) en PHP para garantizar protección absoluta contra inyecciones SQL en cláusulas `ORDER BY`.
+
+### 3. Opción C: Categorías Relacionales
+* Se creó la tabla relacional `categorias` con los registros obligatorios:
+  1. `Familia`
+  2. `Amigos`
+  3. `Trabajo`
+  4. `Universidad`
+  5. `Otro`
+* **Integridad Referencial:** Cada contacto está vinculado a una categoría mediante una clave foránea (`fk_contactos_categoria`) con `ON DELETE RESTRICT ON UPDATE CASCADE`.
+* **Visualización:** En la tabla se muestra un *Badge* estilizado con un color distintivo para cada categoría (violeta, verde, naranja, azul y gris).
+* **Filtro por Categoría:** En el panel de control se incluye un selector para ver contactos de una categoría específica o de todas las categorías.
+* **Gestión en Formularios:** Tanto en `crear.php` como en `editar.php`, se incluye un campo desplegable `<select>` cargado dinámicamente desde la tabla `categorias`.
+
+### 4. Opción D: Contactos Favoritos
+* Se agregó la columna `es_favorito TINYINT(1) NOT NULL DEFAULT 0` en la tabla `contactos`.
+* **Alternancia Rápida (Toggle):** Cada fila de la tabla cuenta con un botón interactivo de estrella (★ dorado si es favorito, ☆ gris si no lo es). Con un solo clic, se ejecuta una petición `POST` al controlador `toggle_favorito.php` alternando su estado al instante y regresando a la vista actual sin perder los filtros activos.
+* **Pestaña de Acceso Rápido:** Encabezado con pestañas para alternar entre **"Todos los contactos"** y **"⭐ Solo Favoritos"**.
+* **Gestión en Formularios:** Casilla de verificación (*checkbox*) en las pantallas de creación y edición para marcar o desmarcar un contacto como favorito.
 
 ---
 
 ## Tecnologías Utilizadas
 
-* **Lenguaje Backend:** PHP (utilizando extensión PDO para persistencia).
-* **Base de Datos:** MySQL / MariaDB (motor InnoDB, codificación UTF-8 Multibyte).
-* **Servidor Web:** Apache (entorno XAMPP).
-* **Frontend:** HTML5 semántico y CSS3 responsivo.
+* **Backend:** PHP 8.x (Extensiones: `PDO`, `pdo_mysql`, `mbstring`, `session`).
+* **Base de Datos:** MySQL / MariaDB (Motor InnoDB, codificación `utf8mb4` y cotejamiento `utf8mb4_unicode_ci`).
+* **Frontend:** HTML5 semántico, CSS3 moderno con variables CSS, diseño adaptativo (Grid & Flexbox).
+* **Servidor Web:** Apache (entorno local con XAMPP y servidores en la nube en hosting gratuito).
+* **Seguridad:** Hashing Bcrypt (`password_hash`), Sentencias preparadas (`PDO::prepare`), Sanitización contextual (`htmlspecialchars`), Protección Anti-CSRF/Anti-IDOR y regeneración de ID de sesión.
 
 ---
 
-## Requisitos del Sistema
+## Guía de Despliegue en un Hosting Gratuito (Paso a Paso)
 
-* Servidor local con Apache y MySQL (XAMPP recomendado).
-* PHP con soporte activo para PDO y las extensiones estándar `pdo_mysql`, `mbstring` y `session`.
-* Navegador web moderno (Chrome, Firefox, Edge, etc.).
+Para cumplir con la **Parte 2** de la actividad, se puede utilizar **InfinityFree** (recomendado), **AwardSpace** o **ByetHost**. A continuación, se detallan los pasos para InfinityFree:
+
+### Paso 1: Crear la cuenta en el Hosting
+1. Ingresar a [InfinityFree](https://www.infinityfree.com/) y registrarse con un correo electrónico.
+2. En el panel de control, hacer clic en **"Create Account"**.
+3. Elegir un subdominio gratuito (por ejemplo: `agendapro-juanvimos.infinityfreeapp.com`).
+4. Completar el proceso para activar la cuenta de hosting.
+
+### Paso 2: Crear la Base de Datos MySQL
+1. En el panel de control de la cuenta creada en InfinityFree, entrar a **"MySQL Databases"**.
+2. Crear una nueva base de datos (por ejemplo: `agenda_contactos`).
+3. Anotar los datos de conexión provistos:
+   * **MySQL Hostname:** (Ejemplo: `sql305.infinityfree.com`)
+   * **MySQL Database Name:** (Ejemplo: `if0_12345678_agenda_contactos`)
+   * **MySQL Username:** (Ejemplo: `if0_12345678`)
+   * **MySQL Password:** (La contraseña de tu cuenta de InfinityFree)
+
+### Paso 3: Importar el Script SQL en phpMyAdmin
+1. Hacer clic en el botón **"phpMyAdmin"** junto a la base de datos recién creada.
+2. Seleccionar la base de datos en el panel izquierdo.
+3. Ir a la pestaña **"Importar"** (o pestaña **"SQL"**).
+4. Seleccionar el archivo `agenda_contactos.sql` del proyecto y presionar **"Continuar"** para ejecutarlo.
+
+### Paso 4: Configurar `config/conexion.php` para el Hosting
+En tu archivo `config/conexion.php`, configura las variables con los datos del hosting:
+
+```php
+// Configuración para el Hosting Gratuito:
+$host = "sqlXXX.infinityfree.com";             // Host provisto por InfinityFree
+$db = "if0_XXXXXXX_agenda_contactos";          // Nombre completo de la BD
+$usuario = "if0_XXXXXXX";                      // Usuario de la BD
+$password = "tu_password_del_hosting";         // Contraseña de la cuenta
+$charset = "utf8mb4";
+```
+
+### Paso 5: Subir los Archivos al Servidor
+1. Entrar al **Online File Manager** (o conectarse por FTP mediante FileZilla).
+2. Abrir la carpeta raíz pública: `htdocs/`.
+3. Subir todos los archivos y carpetas del proyecto:
+   * `auth/`
+   * `config/` (con las credenciales del hosting en `conexion.php`)
+   * `contactos/`
+   * `css/`
+   * `includes/`
+   * `index.php`
+4. ¡Listo! Abrir la URL pública en el navegador y verificar el funcionamiento completo.
 
 ---
 
-## Instalación Paso a Paso
+## Instrucciones para Instalar el Proyecto Localmente (XAMPP)
 
-1. Clonar o descargar el repositorio dentro del directorio de publicación del servidor web:
-   * En XAMPP para Windows: `C:\xampp\htdocs\AgendaContactos`
-2. Iniciar los módulos de **Apache** y **MySQL** desde el Panel de Control de XAMPP.
-3. Importar la base de datos relacional (instrucciones en la siguiente sección).
-4. Verificar la configuración de conexión en `config/conexion.php` según las credenciales de su MySQL local.
-5. Abrir el navegador e ingresar a la URL:
+1. **Copiar el proyecto:**
+   Clonar o copiar la carpeta `AgendaContactos` en el directorio de Apache:
+   ```text
+   C:\xampp\htdocs\AgendaContactos
+   ```
+2. **Iniciar servicios:**
+   Abrir el Panel de Control de XAMPP y presionar **Start** en **Apache** y **MySQL**.
+3. **Importar la Base de Datos:**
+   * Abrir `http://localhost/phpmyadmin/`.
+   * Crear una base de datos llamada `agenda_contactos` (cotejamiento `utf8mb4_unicode_ci`).
+   * Ir a la pestaña **Importar**, seleccionar `agenda_contactos.sql` y ejecutar.
+4. **Verificar conexión:**
+   Asegurarse de que `config/conexion.php` tenga las credenciales locales:
+   ```php
+   $host = "localhost";
+   $db = "agenda_contactos";
+   $usuario = "root";
+   $password = "";
+   ```
+5. **Ejecutar la aplicación:**
+   Abrir el navegador web e ingresar a:
    ```text
    http://localhost/AgendaContactos/
    ```
 
 ---
 
-## Base de Datos e Importación
-
-El proyecto incluye el script SQL completo en la raíz: `agenda_contactos.sql`.
-
-### Pasos para importar:
-1. Abrir phpMyAdmin en el navegador: `http://localhost/phpmyadmin/`.
-2. Dirigirse a la pestaña **Importar**.
-3. Seleccionar el archivo `agenda_contactos.sql` y hacer clic en **Importar** (o ejecutar su contenido en la pestaña **SQL**).
-
-### Estructura relacional:
-* **Base de datos:** `agenda_contactos` (juego de caracteres `utf8mb4` con cotejamiento `utf8mb4_unicode_ci`).
-* **Tabla `usuarios`:** Almacena la cuenta de acceso (`id`, `nombre`, `correo` único, `password` como hash de 255 caracteres y `fecha_registro`).
-* **Tabla `contactos`:** Almacena los contactos registrados (`id`, `id_usuario`, `nombre`, `telefono`, `correo`, `ciudad`).
-* **Integridad referencial:** La tabla `contactos` implementa la restricción de clave foránea `fk_contactos_usuario` vinculada a `usuarios(id)` con reglas `ON DELETE CASCADE` y `ON UPDATE CASCADE`.
-
----
-
-## Configuración de MySQL y Credenciales
-
-La conexión se gestiona mediante PDO en el archivo `config/conexion.php`.
-
-* **Instalación estándar de XAMPP:**
-  El usuario por defecto de MySQL es `root` sin contraseña (`$password = "";`).
-* **Instalación con contraseña personalizada:**
-  Si su servidor local de MySQL utiliza contraseña, edite la variable en `config/conexion.php`:
-  ```php
-  $host = "localhost";
-  $db = "agenda_contactos";
-  $usuario = "root";
-  $password = "su_contraseña_aqui";
-  ```
-* **Plantilla de referencia:**
-  Se proporciona el archivo `config/conexion.example.php` como plantilla segura sin credenciales reales para entornos de prueba o despliegue.
-
----
-
-## Estructura del Proyecto
+## Estructura del Directorio del Proyecto
 
 ```text
 AgendaContactos/
 │
-├── auth/                       # Módulo de autenticación y control de acceso
-│   ├── autenticar.php          # Validación de credenciales y apertura de sesión
+├── auth/                       # Módulo de autenticación de usuarios
+│   ├── autenticar.php          # Verificación de credenciales con password_verify
 │   ├── login.php               # Formulario de inicio de sesión
-│   ├── logout.php             # Cierre y destrucción de sesión
-│   ├── registrar.php           # Procesamiento de registro y hashing de contraseña
-│   └── registro.php            # Formulario de creación de cuenta
+│   ├── logout.php              # Cierre y destrucción segura de sesión
+│   ├── registrar.php           # Creación de usuarios con hash Bcrypt
+│   └── registro.php            # Formulario de registro de nuevas cuentas
 │
 ├── config/                     # Configuración de base de datos
-│   ├── conexion.php            # Conexión activa a MySQL vía PDO
-│   └── conexion.example.php    # Plantilla de configuración de referencia
+│   ├── conexion.php            # Conexión PDO activa (Local / Hosting)
+│   └── conexion.example.php    # Plantilla de ejemplo
 │
-├── contactos/                  # Módulo CRUD de contactos (rutas privadas)
-│   ├── actualizar.php          # Procesamiento de actualización de contacto
-│   ├── crear.php               # Formulario de registro de nuevo contacto
-│   ├── editar.php              # Formulario de edición (con validación de pertenencia)
-│   ├── eliminar.php            # Procesamiento de eliminación vía POST
-│   ├── guardar.php             # Procesamiento y almacenamiento de nuevo contacto
-│   └── listar.php              # Panel principal y consulta de contactos del usuario
+├── contactos/                  # Módulo de gestión de contactos (Rutas protegidas)
+│   ├── actualizar.php          # Procesamiento UPDATE (con categorías y favoritos)
+│   ├── crear.php               # Formulario nuevo contacto (selector de categoría y favorito)
+│   ├── editar.php              # Formulario edición (con datos y estado actual)
+│   ├── eliminar.php            # Eliminación segura vía POST
+│   ├── guardar.php             # Procesamiento INSERT (con validaciones de categoría)
+│   ├── listar.php              # Panel principal con Búsqueda, Orden, Categorías y Favoritos
+│   └── toggle_favorito.php     # Controlador de alternancia rápida de Favorito (⭐)
 │
-├── css/                        # Estilos visuales
-│   └── estilo.css              # Hoja de estilos CSS responsiva del sistema
+├── css/                        # Hojas de estilo
+│   └── estilo.css              # CSS responsivo con badges, filtros y diseño moderno
 │
-├── includes/                   # Componentes de soporte
-│   ├── mensajes.php            # Funciones para mensajes flash de sesión (éxito/error)
-│   ├── header.php              # Archivo base reservado para modularización futura
-│   ├── navbar.php              # Archivo base reservado para modularización futura
-│   └── footer.php              # Archivo base reservado para modularización futura
+├── includes/                   # Componentes auxiliares
+│   ├── mensajes.php            # Mensajes Flash de sesión (éxito/error)
+│   ├── header.php              # Plantilla base
+│   ├── navbar.php              # Barra de navegación
+│   └── footer.php              # Pie de página
 │
-├── js/                         # Scripts de cliente
-│   └── app.js                  # Archivo base reservado para scripts futuros
+├── js/
+│   └── app.js                  # Scripts adicionales de cliente
 │
-├── .gitignore                  # Exclusiones de control de versiones
-├── agenda_contactos.sql        # Script de creación de base de datos y tablas
-├── index.php                   # Página pública de bienvenida / redirección
-└── README.md                   # Documentación académica y técnica del proyecto
+├── .gitignore                  # Exclusiones de Git
+├── agenda_contactos.sql        # Script SQL completo (BD, tablas, categorías y relaciones)
+├── index.php                   # Punto de entrada / redirección inicial
+└── README.md                   # Documentación oficial del proyecto y entrega
 ```
 
-*(Nota: Los archivos `header.php`, `navbar.php`, `footer.php` y `app.js` se conservan en la estructura como elementos base previstos para futuras ampliaciones de modularización).*
+---
+
+## Capturas de Pantalla del Sistema
+
+### 1. Panel Principal con Búsqueda, Filtros y Badges de Categoría
+*Vista de la lista de contactos mostrando la barra de búsqueda por nombre, correo y ciudad, selector de ordenamiento, badges de colores por categoría y contador estadístico.*
+
+```text
+[ INSERTAR AQUÍ CAPTURA DEL PANEL PRINCIPAL CON FILTROS ACTIVOS ]
+```
+
+### 2. Filtro de Contactos Favoritos (Opción D)
+*Vista filtrada con la pestaña "Solo Favoritos", mostrando las estrellas activas y el aislamiento de datos.*
+
+```text
+[ INSERTAR AQUÍ CAPTURA DE LA VISTA DE FAVORITOS ]
+```
+
+### 3. Formulario de Creación con Categorías y Favoritos (Opciones C y D)
+*Formulario con el menú desplegable de categorías (Familia, Amigos, Trabajo, Universidad, Otro) y el checkbox de favorito.*
+
+```text
+[ INSERTAR AQUÍ CAPTURA DEL FORMULARIO CREAR CONTACTO ]
+```
+
+### 4. Despliegue en Hosting Gratuito
+*Captura de pantalla de la aplicación funcionando con una URL pública en el navegador.*
+
+```text
+[ INSERTAR AQUÍ CAPTURA DEL NAVEGADOR CON LA URL DEL HOSTING GRATUITO ]
+```
 
 ---
 
-## Funcionamiento del Sistema
+## Verificación de Seguridad y Buenas Prácticas
 
-### 1. Autenticación y Cuentas
-* **Registro (`auth/registro.php`):** Permite registrar nuevos usuarios solicitando nombre, correo electrónico y contraseña con confirmación. Valida que el correo no esté registrado previamente.
-* **Inicio de Sesión (`auth/login.php`):** Autentica al usuario contra la base de datos y crea la sesión en el servidor. Si el usuario ya está autenticado, el sistema lo redirige directamente a la lista de contactos.
-* **Cierre de Sesión (`auth/logout.php`):** Cierra la sesión activa, destruye las cookies asociadas y redirige a la pantalla de inicio de sesión con un mensaje informativo.
-
-### 2. Gestión de Contactos (CRUD)
-* **Crear (C):** `contactos/crear.php` y `contactos/guardar.php` permiten registrar un nuevo contacto asociándolo obligatoriamente al identificador del usuario en sesión (`id_usuario`).
-* **Consultar / Listar (R):** `contactos/listar.php` presenta la lista exclusiva de contactos del usuario autenticado, indicando el total registrado o un estado informativo si la agenda está vacía.
-* **Actualizar (U):** `contactos/editar.php` y `contactos/actualizar.php` cargan y modifican los datos de un contacto, validando previamente que pertenezca al usuario en sesión.
-* **Eliminar (D):** `contactos/eliminar.php` suprime el contacto mediante una solicitud `POST` tras confirmación del usuario, verificando la autorización de propiedad.
+1. **Aislamiento Multiusuario:** Ningún usuario puede ver, editar ni eliminar contactos pertenecientes a otro usuario (`WHERE id_usuario = ?`).
+2. **Consultas Preparadas (PDO):** Cero vulnerabilidades de inyección SQL mediante el uso sistemático de `prepare()` y `execute()`.
+3. **Protección XSS:** Escapado riguroso de salidas mediante `htmlspecialchars(..., ENT_QUOTES, 'UTF-8')`.
+4. **Contraseñas Seguras:** Algoritmo nativo Bcrypt con factor de costo adaptable.
+5. **Sesiones Seguras:** Control riguroso de sesión y protección contra fijación mediante `session_regenerate_id(true)`.
 
 ---
 
-## Seguridad Implementada
+## Entregables de la Actividad
 
-El proyecto incorpora los mecanismos de seguridad requeridos por la rúbrica de evaluación:
-
-1. **Protección de Contraseñas:**
-   * Las contraseñas se procesan mediante `password_hash($password, PASSWORD_DEFAULT)`, generando un hash seguro mediante el algoritmo estándar Bcrypt.
-   * La verificación en el inicio de sesión se realiza con `password_verify()`. En ningún momento se almacenan ni comparan contraseñas en texto plano.
-2. **Gestión Segura de Sesiones:**
-   * Control de sesiones con `session_start()`.
-   * Protección contra fijación de sesión mediante `session_regenerate_id(true)` tras una autenticación exitosa.
-   * Cierre seguro de sesión en `logout.php`, limpiando el arreglo `$_SESSION`, destruyendo la cookie de sesión en el cliente y ejecutando `session_destroy()`.
-3. **Protección de Páginas Privadas:**
-   * Todas las páginas y controladores del módulo `contactos/` verifican la existencia de `$_SESSION["usuario_id"]`. Si no hay sesión activa, redirigen de inmediato al login.
-4. **Aislamiento de Contactos y Protección Anti-IDOR (Insecure Direct Object References):**
-   * Todas las operaciones de lectura, actualización y eliminación filtran forzosamente por `id_usuario = ?`.
-   * Si un usuario intenta editar o eliminar un contacto ajeno o inexistente manipulando el parámetro `id` en la URL o en el formulario, el sistema deniega la acción, emite un mensaje de error y redirige a la lista de contactos.
-5. **Prevención de Inyección SQL:**
-   * 100% de las consultas interactivas se ejecutan mediante sentencias preparadas de PDO con parámetros vinculados (`prepare()` y `execute()`).
-6. **Prevención de XSS (Cross-Site Scripting):**
-   * Toda la información dinámica suministrada por el usuario se escapa antes de imprimirse en las vistas utilizando `htmlspecialchars($variable, ENT_QUOTES, "UTF-8")`.
-
----
-
-## Guía de Pruebas Recomendadas para la Evaluación
-
-1. **Prueba de Registro e Inicio de Sesión:**
-   * Crear una cuenta con nombre, correo y contraseña.
-   * Iniciar sesión y comprobar la bienvenida personalizada en el panel.
-2. **Prueba de Operaciones CRUD:**
-   * Registrar un nuevo contacto y verificar que aparezca en el listado.
-   * Editar los datos del contacto creado y guardar los cambios.
-   * Eliminar el contacto mediante el botón de eliminación y confirmar la alerta.
-3. **Prueba de Protección de Rutas Privadas:**
-   * Cerrar sesión y tratar de acceder directamente en la barra del navegador a:
-     `http://localhost/AgendaContactos/contactos/listar.php`
-   * Confirmar que el sistema bloquea el acceso y redirige a `login.php`.
-4. **Prueba de Aislamiento de Información entre Usuarios:**
-   * Registrar dos cuentas con correos distintos (ej. Usuario A y Usuario B).
-   * Con el Usuario A, crear dos contactos.
-   * Cerrar sesión e ingresar con el Usuario B: verificar que la agenda del Usuario B aparezca vacía y no muestre los contactos del Usuario A.
-5. **Prueba de Seguridad por Manipulación de URL (Anti-IDOR):**
-   * Con la sesión del Usuario B abierta, intentar ingresar a la URL de edición con el ID de un contacto del Usuario A (por ejemplo: `contactos/editar.php?id=1`).
-   * Verificar que el sistema rechace el acceso con el mensaje: *"El contacto no existe o no tienes permiso para acceder"* y redirija al listado.
+1. **URL del sistema funcionando:** `http://agendapro-juanvimos.infinityfreeapp.com`
+2. **Repositorio en GitHub:** `https://github.com/Jvimos/AgendaPro`
+3. **Script SQL actualizado:** [`agenda_contactos.sql`](./agenda_contactos.sql)

@@ -9,9 +9,10 @@ Sistema de Agenda de Contactos */
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: #f4f6f9;
     color: #1f2937;
+    -webkit-font-smoothing: antialiased;
 }
 
 /*  COLORES DEL PROYECTO */
@@ -77,27 +78,40 @@ body {
 /*  FORMULARIOS  */
 
 .form-grupo {
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
 .form-grupo label {
     display: block;
-    margin-bottom: 7px;
-    font-size: 14px;
-    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #1e293b;
 }
 
-.form-grupo input {
+.form-grupo input,
+.form-grupo select {
     width: 100%;
     padding: 12px 14px;
-    border: 1px solid var(--gris-borde);
+    border: 1px solid #e2e8f0;
     border-radius: 8px;
-    font-size: 15px;
+    font-size: 14px;
+    color: #1e293b;
+    background-color: var(--blanco);
     outline: none;
     transition: 0.2s ease;
 }
 
-.form-grupo input:focus {
+.form-grupo select {
+    cursor: pointer;
+}
+
+.form-grupo input::placeholder {
+    color: #94a3b8;
+}
+
+.form-grupo input:focus,
+.form-grupo select:focus {
     border-color: var(--azul-secundario);
     box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.10);
 }
@@ -239,36 +253,29 @@ body {
     justify-content: center;
     padding: 30px 15px;
 
-    background:
-        radial-gradient(
-            circle at top left,
-            #dbeafe 0%,
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #f8fafc 0%,
-            #e8eef9 100%
-        );
+    background: radial-gradient(
+        circle at 50% 30%,
+        #edf4fb 0%,
+        #e2ecf8 100%
+    );
 }
 
 .auth-contenedor {
     width: 100%;
-    max-width: 480px;
+    max-width: 430px;
 
     background-color: var(--blanco);
 
-    padding: 45px;
+    padding: 42px 38px;
 
-    border-radius: 18px;
+    border-radius: 20px;
 
-    box-shadow:
-        0 20px 50px rgba(15, 23, 42, 0.12);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
 }
 
 .auth-marca {
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 24px;
 }
 
 .auth-marca a {
@@ -276,6 +283,7 @@ body {
 
     font-size: 30px;
     font-weight: 800;
+    letter-spacing: -0.4px;
 
     color: var(--azul-principal);
 }
@@ -286,15 +294,17 @@ body {
 
 .auth-cabecera {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 26px;
 }
 
 .auth-cabecera h1 {
     color: var(--azul-principal);
 
-    font-size: 28px;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
 
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .auth-cabecera p {
@@ -312,25 +322,26 @@ body {
 .auth-pie {
     text-align: center;
 
-    margin-top: 25px;
+    margin-top: 26px;
 
     padding-top: 20px;
 
-    border-top: 1px solid var(--gris-borde);
+    border-top: 1px solid #f1f5f9;
 }
 
 .auth-pie p {
     color: var(--gris-texto);
 
-    font-size: 14px;
+    font-size: 13.5px;
 }
 
 .auth-pie a {
-    color: var(--azul-secundario);
+    color: var(--azul-principal);
 
-    font-weight: 600;
+    font-weight: 700;
 
     text-decoration: none;
+    margin-left: 2px;
 }
 
 .auth-pie a:hover {
@@ -632,4 +643,258 @@ button.accion-eliminar {
 
 button.accion-eliminar:hover {
     text-decoration: underline;
+}
+
+/* ============================================================
+   MEJORAS AVANZADAS (Búsqueda, Ordenamiento, Categorías, Favoritos)
+   ============================================================ */
+
+/* Pestañas de Vista Rápida (Todos vs Favoritos) */
+.pestañas-filtro {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--gris-borde);
+    padding-bottom: 2px;
+}
+
+.pestaña-item {
+    padding: 10px 18px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--gris-texto);
+    text-decoration: none;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.2s ease;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+}
+
+.pestaña-item:hover {
+    color: var(--azul-principal);
+    background-color: #f1f5f9;
+}
+
+.pestaña-item.activa {
+    color: var(--azul-principal);
+    border-bottom-color: var(--azul-principal);
+    background-color: var(--blanco);
+}
+
+/* Panel de Búsqueda y Filtros */
+.panel-filtros {
+    background: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 25px;
+    box-shadow: var(--sombra);
+}
+
+.form-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 16px;
+}
+
+.filtro-campo {
+    flex: 1 1 180px;
+    display: flex;
+    flex-direction: column;
+}
+
+.filtro-busqueda {
+    flex: 2 1 260px;
+}
+
+.filtro-campo label {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #334155;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.filtro-campo input,
+.filtro-campo select {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 13.5px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    background-color: #f8fafc;
+    color: #1e293b;
+    transition: all 0.2s ease;
+}
+
+.filtro-campo input:focus,
+.filtro-campo select:focus {
+    background-color: var(--blanco);
+    border-color: var(--azul-secundario);
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.10);
+}
+
+.filtro-acciones {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.btn-filtro {
+    padding: 10px 18px;
+    font-size: 14px;
+}
+
+.btn-limpiar {
+    padding: 10px 14px;
+    font-size: 13.5px;
+    color: var(--rojo);
+    border-color: #fecaca;
+    background-color: #fef2f2;
+}
+
+.btn-limpiar:hover {
+    background-color: #fee2e2;
+}
+
+/* Badges de Categoría (Opción C) */
+.badge-categoria {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    text-transform: capitalize;
+}
+
+.badge-cat-familia {
+    background-color: #f3e8ff;
+    color: #6b21a8;
+    border: 1px solid #e9d5ff;
+}
+
+.badge-cat-amigos {
+    background-color: #dcfce7;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+}
+
+.badge-cat-trabajo {
+    background-color: #ffedd5;
+    color: #c2410c;
+    border: 1px solid #fed7aa;
+}
+
+.badge-cat-universidad {
+    background-color: #e0f2fe;
+    color: #0369a1;
+    border: 1px solid #bae6fd;
+}
+
+.badge-cat-otro {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+}
+
+/* Botón de Estrella de Favorito (Opción D) */
+.btn-estrella {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    color: #cbd5e1;
+    transition: transform 0.15s ease, color 0.15s ease;
+    padding: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-estrella:hover {
+    transform: scale(1.25);
+    color: #f59e0b;
+}
+
+.btn-estrella.activo {
+    color: #f59e0b;
+    text-shadow: 0 1px 3px rgba(245, 158, 11, 0.4);
+}
+
+.fila-favorito {
+    background-color: #fffdf5;
+}
+
+.fila-favorito:hover {
+    background-color: #fffbeb;
+}
+
+/* Card especial de favoritos */
+.estadistica-card-fav strong {
+    color: #d97706 !important;
+}
+
+/* Enlaces de contacto */
+.enlace-contacto {
+    color: #1e293b;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.enlace-contacto:hover {
+    color: var(--azul-hover);
+    text-decoration: underline;
+}
+
+/* Checkbox estilizado para Formularios */
+.form-grupo-checkbox {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+.checkbox-contenedor {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    margin-bottom: 0 !important;
+}
+
+.checkbox-contenedor input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #f59e0b;
+}
+
+.checkbox-etiqueta {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+@media (max-width: 900px) {
+    .form-filtros {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filtro-acciones {
+        flex-direction: row;
+        margin-top: 10px;
+    }
+
+    .btn-filtro,
+    .btn-limpiar {
+        flex: 1;
+        text-align: center;
+    }
 }
