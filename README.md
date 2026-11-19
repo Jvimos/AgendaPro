@@ -19,7 +19,7 @@ Aplicación web desarrollada en PHP y MySQL para la gestión académica y profes
 ## Enlaces de Acceso y Entrega
 
 > 🌐 **URL Pública del Sistema en Línea (Hosting Gratuito):**  
-> `http://vimsjordi.free.nf`
+> `http://vimsjordi.free.nf/AgendaContactos/`
 
 > 🐙 **Repositorio en GitHub:**  
 > `https://github.com/Jvimos/AgendaPro`
@@ -272,6 +272,6 @@ AgendaContactos/
 
 ## Entregables de la Actividad
 
-1. **URL del sistema funcionando:** `http://vimsjordi.free.nf`
+1. **URL del sistema funcionando:** `http://vimsjordi.free.nf/AgendaContactos/`
 2. **Repositorio en GitHub:** `https://github.com/Jvimos/AgendaPro`
 3. **Script SQL actualizado:** [`agenda_contactos.sql`](./agenda_contactos.sql)
