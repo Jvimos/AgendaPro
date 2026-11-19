@@ -117,10 +117,10 @@ Para cumplir con la **Parte 2** de la actividad, utilice **InfinityFree**. A con
 1. En el panel de control de la cuenta creada en InfinityFree, entrar a **"MySQL Databases"**.
 2. Crear una nueva base de datos (por ejemplo: `agenda_contactos`).
 3. Anotar los datos de conexión provistos:
-   * **MySQL Hostname:** (Ejemplo: `sql305.infinityfree.com`)
-   * **MySQL Database Name:** (Ejemplo: `if0_12345678_agenda_contactos`)
-   * **MySQL Username:** (Ejemplo: `if0_12345678`)
-   * **MySQL Password:** (La contraseña de tu cuenta de InfinityFree)
+   * **MySQL Hostname:** (`sql305.infinityfree.com`)
+   * **MySQL Database Name:** (`if0_12345678_agenda_contactos`)
+   * **MySQL Username:** (`if0_12345678`)
+   * **MySQL Password:** (oculto por tema de seguridad)
 
 ### Paso 3: Importar el Script SQL en phpMyAdmin
 1. Hacer clic en el botón **"phpMyAdmin"** junto a la base de datos recién creada.
