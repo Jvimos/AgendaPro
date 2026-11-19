@@ -110,7 +110,7 @@ Para cumplir con la **Parte 2** de la actividad, utilice **InfinityFree**. A con
 ### Paso 1: Crear la cuenta en el Hosting
 1. Ingresar a [InfinityFree](https://www.infinityfree.com/) y registrarse con un correo electrónico.
 2. En el panel de control, hacer clic en **"Create Account"**.
-3. Elegir un subdominio gratuito (por ejemplo: `agendapro-juanvimos.infinityfreeapp.com`).
+3. Elegir un subdominio gratuito.
 4. Completar el proceso para activar la cuenta de hosting.
 
 ### Paso 2: Crear la Base de Datos MySQL
