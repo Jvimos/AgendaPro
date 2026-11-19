@@ -131,7 +131,7 @@ $urlActual = basename($_SERVER['PHP_SELF']) . (!empty($_SERVER['QUERY_STRING']) 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis contactos | AgendaPro</title>
-    <link rel="stylesheet" href="../css/estilo.css">
+    <link rel="stylesheet" href="../css/estilo.css?v=<?= time() ?>">
 </head>
 
 <body>
@@ -196,48 +196,65 @@ $urlActual = basename($_SERVER['PHP_SELF']) . (!empty($_SERVER['QUERY_STRING']) 
             </div>
         </section>
 
-        <!-- Barra de Pestañas Rápidas (Opción D: Favoritos) -->
-        <div class="pestañas-filtro">
-            <a href="listar.php" class="pestaña-item <?= !$soloFavoritos ? 'activa' : '' ?>">
-                Todos los contactos (<?= $total_contactos ?>)
+        <!-- Pestañas de Vista Rápida (Segmented Control) -->
+        <div class="tabs-control">
+            <a href="listar.php" class="tab-btn <?= !$soloFavoritos ? 'activo' : '' ?>">
+                <span>👥 Todos los contactos</span>
+                <span class="tab-badge"><?= $total_contactos ?></span>
             </a>
-            <a href="listar.php?favoritos=1<?= $q !== '' ? '&q=' . urlencode($q) : '' ?><?= $categoriaFiltro !== '' ? '&categoria=' . urlencode($categoriaFiltro) : '' ?><?= $orden !== 'fecha_desc' ? '&orden=' . urlencode($orden) : '' ?>" class="pestaña-item <?= $soloFavoritos ? 'activa' : '' ?>">
-                ⭐ Solo Favoritos (<?= $total_favoritos ?>)
+            <a href="listar.php?favoritos=1<?= $q !== '' ? '&q=' . urlencode($q) : '' ?><?= $categoriaFiltro !== '' ? '&categoria=' . urlencode($categoriaFiltro) : '' ?><?= $orden !== 'fecha_desc' ? '&orden=' . urlencode($orden) : '' ?>" class="tab-btn tab-favoritos <?= $soloFavoritos ? 'activo' : '' ?>">
+                <span>⭐ Solo Favoritos</span>
+                <span class="tab-badge tab-badge-fav"><?= $total_favoritos ?></span>
             </a>
         </div>
 
-        <!-- PANEL DE BÚSQUEDA Y FILTROS AVANZADOS (Opciones A, B, C, D) -->
-        <section class="panel-filtros">
-            <form action="listar.php" method="GET" class="form-filtros">
+        <!-- TARJETA PROFESIONAL DE BÚSQUEDA Y FILTROS AVANZADOS -->
+        <section class="filtro-card">
+            <div class="filtro-card-header">
+                <div class="filtro-header-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <span>Filtros y Búsqueda Avanzada</span>
+                </div>
+                <?php if ($hayFiltrosActivos): ?>
+                    <a href="listar.php" class="btn-reset-filtros" title="Restablecer todos los filtros">
+                        ✕ Limpiar filtros
+                    </a>
+                <?php endif; ?>
+            </div>
+
+            <form action="listar.php" method="GET" class="filtro-grid">
                 <?php if ($soloFavoritos): ?>
                     <input type="hidden" name="favoritos" value="1">
                 <?php endif; ?>
 
-                <div class="filtro-campo filtro-busqueda">
-                    <label for="q">🔍 Búsqueda:</label>
-                    <input 
-                        type="text" 
-                        name="q" 
-                        id="q" 
-                        placeholder="Buscar por nombre, correo o ciudad..." 
-                        value="<?= htmlspecialchars($q, ENT_QUOTES, "UTF-8") ?>"
-                    >
+                <div class="filtro-item">
+                    <label for="q">Buscar contactos</label>
+                    <div class="input-con-icono">
+                        <svg class="icono-input" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input 
+                            type="text" 
+                            name="q" 
+                            id="q" 
+                            placeholder="Buscar por nombre, correo o ciudad..." 
+                            value="<?= htmlspecialchars($q, ENT_QUOTES, "UTF-8") ?>"
+                        >
+                    </div>
                 </div>
 
-                <div class="filtro-campo">
-                    <label for="campo">Criterio:</label>
-                    <select name="campo" id="campo">
-                        <option value="todos" <?= $campo === 'todos' ? 'selected' : '' ?>>Todos los campos</option>
-                        <option value="nombre" <?= $campo === 'nombre' ? 'selected' : '' ?>>Solo Nombre</option>
-                        <option value="correo" <?= $campo === 'correo' ? 'selected' : '' ?>>Solo Correo</option>
-                        <option value="ciudad" <?= $campo === 'ciudad' ? 'selected' : '' ?>>Solo Ciudad</option>
+                <div class="filtro-item">
+                    <label for="campo">Criterio</label>
+                    <select name="campo" id="campo" class="select-moderno">
+                        <option value="todos" <?= $campo === 'todos' ? 'selected' : '' ?>>🔍 Todos los campos</option>
+                        <option value="nombre" <?= $campo === 'nombre' ? 'selected' : '' ?>>👤 Solo Nombre</option>
+                        <option value="correo" <?= $campo === 'correo' ? 'selected' : '' ?>>✉️ Solo Correo</option>
+                        <option value="ciudad" <?= $campo === 'ciudad' ? 'selected' : '' ?>>📍 Solo Ciudad</option>
                     </select>
                 </div>
 
-                <div class="filtro-campo">
-                    <label for="categoria">🏷️ Categoría:</label>
-                    <select name="categoria" id="categoria">
-                        <option value="">Todas las categorías</option>
+                <div class="filtro-item">
+                    <label for="categoria">Categoría</label>
+                    <select name="categoria" id="categoria" class="select-moderno">
+                        <option value="">🏷️ Todas las categorías</option>
                         <?php foreach ($categorias as $cat): ?>
                             <option value="<?= (int)$cat['id'] ?>" <?= ((string)$cat['id'] === $categoriaFiltro) ? 'selected' : '' ?>>
                                 <?= htmlspecialchars($cat['nombre'], ENT_QUOTES, "UTF-8") ?>
@@ -246,27 +263,23 @@ $urlActual = basename($_SERVER['PHP_SELF']) . (!empty($_SERVER['QUERY_STRING']) 
                     </select>
                 </div>
 
-                <div class="filtro-campo">
-                    <label for="orden">⇅ Ordenar por:</label>
-                    <select name="orden" id="orden">
-                        <option value="fecha_desc" <?= $orden === 'fecha_desc' ? 'selected' : '' ?>>Fecha creación (Recientes)</option>
-                        <option value="fecha_asc" <?= $orden === 'fecha_asc' ? 'selected' : '' ?>>Fecha creación (Antiguos)</option>
-                        <option value="nombre_asc" <?= $orden === 'nombre_asc' ? 'selected' : '' ?>>Nombre (A → Z)</option>
-                        <option value="nombre_desc" <?= $orden === 'nombre_desc' ? 'selected' : '' ?>>Nombre (Z → A)</option>
-                        <option value="ciudad_asc" <?= $orden === 'ciudad_asc' ? 'selected' : '' ?>>Ciudad (A → Z)</option>
-                        <option value="ciudad_desc" <?= $orden === 'ciudad_desc' ? 'selected' : '' ?>>Ciudad (Z → A)</option>
+                <div class="filtro-item">
+                    <label for="orden">Ordenar por</label>
+                    <select name="orden" id="orden" class="select-moderno">
+                        <option value="fecha_desc" <?= $orden === 'fecha_desc' ? 'selected' : '' ?>>📅 Recientes primero</option>
+                        <option value="fecha_asc" <?= $orden === 'fecha_asc' ? 'selected' : '' ?>>📅 Antiguos primero</option>
+                        <option value="nombre_asc" <?= $orden === 'nombre_asc' ? 'selected' : '' ?>>🔤 Nombre (A → Z)</option>
+                        <option value="nombre_desc" <?= $orden === 'nombre_desc' ? 'selected' : '' ?>>🔤 Nombre (Z → A)</option>
+                        <option value="ciudad_asc" <?= $orden === 'ciudad_asc' ? 'selected' : '' ?>>🏙️ Ciudad (A → Z)</option>
+                        <option value="ciudad_desc" <?= $orden === 'ciudad_desc' ? 'selected' : '' ?>>🏙️ Ciudad (Z → A)</option>
                     </select>
                 </div>
 
-                <div class="filtro-acciones">
-                    <button type="submit" class="btn btn-principal btn-filtro">
+                <div class="filtro-item-boton">
+                    <button type="submit" class="btn btn-principal btn-buscar-moderno">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                         Aplicar filtros
                     </button>
-                    <?php if ($hayFiltrosActivos): ?>
-                        <a href="listar.php" class="btn btn-secundario btn-limpiar" title="Restablecer todos los filtros">
-                            ✕ Limpiar
-                        </a>
-                    <?php endif; ?>
                 </div>
             </form>
         </section>
