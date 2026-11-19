@@ -11,11 +11,11 @@ $usuario = "root";
 $password = ""; 
 $charset = "utf8mb4";
 
-// Credenciales para Hosting Gratuito (Ej. InfinityFree / AwardSpace):
-// $host = "sqlXXX.infinityfree.com";
-// $db = "if0_XXXXXXX_agenda_contactos";
-// $usuario = "if0_XXXXXXX";
-// $password = "tu_password_aqui";
+// Credenciales para Hosting Gratuito (InfinityFree - vimsjordi.free.nf):
+// $host = "sql213.infinityfree.com";
+// $db = "if0_43468314_agenda_contactos";
+// $usuario = "if0_43468314";
+// $password = "su_contraseña_de_infinityfree";
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 

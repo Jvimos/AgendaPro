@@ -132,10 +132,10 @@ Para cumplir con la **Parte 2** de la actividad, se puede utilizar **InfinityFre
 En tu archivo `config/conexion.php`, configura las variables con los datos del hosting:
 
 ```php
-// Configuración para el Hosting Gratuito:
-$host = "sqlXXX.infinityfree.com";             // Host provisto por InfinityFree
-$db = "if0_XXXXXXX_agenda_contactos";          // Nombre completo de la BD
-$usuario = "if0_XXXXXXX";                      // Usuario de la BD
+// Configuración para el Hosting Gratuito (InfinityFree - vimsjordi.free.nf):
+$host = "sql213.infinityfree.com";             // Host provisto por InfinityFree
+$db = "if0_43468314_agenda_contactos";         // Nombre completo de la BD
+$usuario = "if0_43468314";                     // Usuario de la BD
 $password = "tu_password_del_hosting";         // Contraseña de la cuenta
 $charset = "utf8mb4";
 ```
