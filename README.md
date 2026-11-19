@@ -136,7 +136,7 @@ En archivo `config/conexion.php`, configura las variables con los datos del host
 $host = "sql213.infinityfree.com";             // Host provisto por InfinityFree
 $db = "if0_43468314_agenda_contactos";         // Nombre completo de la BD
 $usuario = "if0_43468314";                     // Usuario de la BD
-$password = "tu_password_del_hosting";         // Contraseña de la cuenta
+$password = "oculto por tema de seguridad";         // Contraseña de la cuenta
 $charset = "utf8mb4";
 ```
 
