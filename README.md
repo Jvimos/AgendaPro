@@ -254,11 +254,8 @@ AgendaContactos/
 ### 4. Despliegue en Hosting Gratuito
 *Captura de pantalla de la aplicación funcionando con una URL pública en el navegador.*
 
-```text
-[ INSERTAR AQUÍ CAPTURA DEL NAVEGADOR CON LA URL DEL HOSTING GRATUITO ]
-```
+<img width="1738" height="931" alt="image" src="https://github.com/user-attachments/assets/0816b111-7de8-4588-a4a9-5bab9090c6a6" />
 
----
 
 ## Verificación de Seguridad y Buenas Prácticas
 
