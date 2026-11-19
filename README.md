@@ -19,8 +19,7 @@ Aplicación web desarrollada en PHP y MySQL para la gestión académica y profes
 ## Enlaces de Acceso y Entrega
 
 > 🌐 **URL Pública del Sistema en Línea (Hosting Gratuito):**  
-> `http://agendapro-juanvimos.infinityfreeapp.com`  
-> *(Reemplaza con tu URL asignada por InfinityFree o AwardSpace)*
+> `http://vimsjordi.free.nf`
 
 > 🐙 **Repositorio en GitHub:**  
 > `https://github.com/Jvimos/AgendaPro`
@@ -273,6 +272,6 @@ AgendaContactos/
 
 ## Entregables de la Actividad
 
-1. **URL del sistema funcionando:** `http://agendapro-juanvimos.infinityfreeapp.com`
+1. **URL del sistema funcionando:** `http://vimsjordi.free.nf`
 2. **Repositorio en GitHub:** `https://github.com/Jvimos/AgendaPro`
 3. **Script SQL actualizado:** [`agenda_contactos.sql`](./agenda_contactos.sql)
