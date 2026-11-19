@@ -247,9 +247,8 @@ AgendaContactos/
 ### 3. Formulario de Creación con Categorías y Favoritos (Opciones C y D)
 *Formulario con el menú desplegable de categorías (Familia, Amigos, Trabajo, Universidad, Otro) y el checkbox de favorito.*
 
-```text
-[ INSERTAR AQUÍ CAPTURA DEL FORMULARIO CREAR CONTACTO ]
-```
+<img width="928" height="904" alt="image" src="https://github.com/user-attachments/assets/90ad6853-fecf-4ee9-90e6-9d608a53e739" />
+
 
 ### 4. Despliegue en Hosting Gratuito
 *Captura de pantalla de la aplicación funcionando con una URL pública en el navegador.*
