@@ -48,7 +48,7 @@ AgendaPro implementa un modelo **orientado a eventos web**. Cada interacción de
 
 ---
 
-## Mejoras Implementadas (Cumplimiento Total de la Rúbrica - 4 Mejoras)
+## Mejoras Implementadas
 
 En esta entrega se incorporaron **las cuatro mejoras propuestas** para alcanzar la máxima calificación (Excelente - 2.5 pts):
 
