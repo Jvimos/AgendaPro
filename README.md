@@ -129,7 +129,7 @@ Para cumplir con la **Parte 2** de la actividad, utilice **InfinityFree**. A con
 4. Seleccionar el archivo `agenda_contactos.sql` del proyecto y presionar **"Continuar"** para ejecutarlo.
 
 ### Paso 4: Configurar `config/conexion.php` para el Hosting
-En tu archivo `config/conexion.php`, configura las variables con los datos del hosting:
+En archivo `config/conexion.php`, configura las variables con los datos del hosting:
 
 ```php
 // Configuración para el Hosting Gratuito (InfinityFree - vimsjordi.free.nf):
