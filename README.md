@@ -238,7 +238,8 @@ AgendaContactos/
 ### 3. Formulario de Creación con Categorías y Favoritos (Opciones C y D)
 *Formulario con el menú desplegable de categorías (Familia, Amigos, Trabajo, Universidad, Otro) y el checkbox de favorito.*
 
-<img width="928" height="904" alt="image" src="https://github.com/user-attachments/assets/90ad6853-fecf-4ee9-90e6-9d608a53e739" />
+<img width="774" height="874" alt="image" src="https://github.com/user-attachments/assets/ad320856-e500-4a0d-8249-bb1b06b05d80" />
+
 
 
 ### 4. Despliegue en Hosting Gratuito
