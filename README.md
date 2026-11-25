@@ -24,9 +24,6 @@ Aplicación web desarrollada en PHP y MySQL para la gestión académica y profes
 > 🐙 **Repositorio en GitHub:**  
 > `https://github.com/Jvimos/AgendaPro`
 
-> 💾 **Script SQL Actualizado:**  
-> Ubicado en la raíz del proyecto: [`agenda_contactos.sql`](./agenda_contactos.sql)
-
 
 ## Fundamentación Teórica (Resultado de Aprendizaje)
 
